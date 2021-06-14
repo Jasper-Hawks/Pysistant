@@ -51,12 +51,59 @@ def calc(): # Calculator function
     eq = input("Submit your equation: ")
     eq = list(eq)
     ops = []
+    noParen = True
+    # These will act as our two operands and c as our sum/product/difference/etc.
+    a = 0
+    b = 0
+    c = 0
+
     for i in range(len(eq)):
-         if eq[i] != " ":
-             ops.append(eq[i])
+        if eq[i] != " ":
+
+            ops.append(eq[i])
+
+        if eq[i].count("(") != 0 or eq[i].count(")") != 0:
+
+             noParen = False # We have parenthesis
+             # TODO Insert count code here
+             # Count the number of parenthesis if this is the case
+
+        else:
+            noParen = True
+
+    print(ops)
+    if noParen is True:
+        # Then we simply have to evaluate each operator and operand according
+        # to the order of operations as follows
+        # Exponents 
+        # Multiplication
+        # Division
+        # Addition
+        # Subtraction
+        #
+        # So the first thing we have to do is find the symbols and their operands
+        # We'll also have to setup some error handling if symbols or operands are
+        # not in their proper places
+
+        for i in range(len(ops)):
+            if ops[i] == "^":
+                a = ops[i - 1] # Find the operand on the left of the ^ 
+                a = int(a)
+                b = ops[i + 1] # Find the operand on the right of the ^
+                b = int(b)
+                c = a ** b
+                ops[i] = c
+                # We can either delete the items in the list which will mess up 
+                # the for loop or replace them with a space and worry about
+                # cleaning it out later. I'm leaning towards the latter.
+                del ops[i - 1]  # Empty the strings since we're going to raise this operand
+                del ops[i + 1]
+
+
 
     
     print(ops)
+    print(noParen)
 
     
 
