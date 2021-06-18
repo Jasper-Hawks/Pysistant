@@ -62,26 +62,34 @@ def calc(): # Calculator function
         # not in their proper places
 
         for i in range(len(ops)):
+            #TODO add support for floating point numbers. This should be as easy as 
+            # adding is float to the if type is int statement. We may need to cast
+            # c to a float since Python probably won't be happy to multiply ints by 
+            # floats
             if ops[i] == "^":
-
-                # Find the remaning ints to the left and set it to our a operand
-                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                # Find the remaning ints to the left and set it to our a operand and add one because
+                # for loops do not run the last item in a range
+                left = range(((len(ops) - 1) - ((len(ops) - 1) - i) + 1)) 
                 for k in left: # Go through the list from the current index to the left most item in the index
                     if type(ops [i - k]) is int: # If the item we are currently on is an int
                         a = ops[i - k] # Then set it to the a operand
                         ops[i - k] = " " # Leave the space blank
-                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we've already found the operand
+                    elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
+                        print("Incorrect Syntax left ^")
                         exit()
 
-                # Find the remaining ints to the right and set it to our b operand
-                right = range((len(ops) - 1) - i) 
+                # Find the remaining ints to the right and set it to our b operand and add one because
+                # for loops do not the run the last item in a range
+                right = range((((len(ops) - 1) - i) + 1)) 
                 for j in right: # loop through the list to find an int
                     if type(ops[i + j]) is int: # If we have one then 
                         b = ops[i + j] # assign it to the b variable
                         ops[i + j] = " " # make the space empty
-                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we already found the operand
+                    elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
+                        print("Incorrect Syntax right ^")
+                        print(ops[i + j])
                         exit()
                    
                 c = a ** b
@@ -94,59 +102,68 @@ def calc(): # Calculator function
                 # won't be modifed
                 ops[i - 1] = " "
                 ops[i + 1] = " "
-                i = 0
 
             # We need to go through each operator with
             # a for loop
         for i in range(len(ops)):
             if ops[i] == "*":
-               # Find the remaning ints to the left and set it to our a operand
-                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                # Find the remaning ints to the left and set it to our a operand and add one because
+                # for loops do not run the last item in a range
+                left = range(((len(ops) - 1) - ((len(ops) - 1) - i) + 1)) 
                 for k in left: # Go through the list from the current index to the left most item in the index
                     if type(ops [i - k]) is int: # If the item we are currently on is an int
                         a = ops[i - k] # Then set it to the a operand
                         ops[i - k] = " " # Leave the space blank
-                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we've already found the operand
+                    elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
+                        print("Incorrect Syntax left ^")
                         exit()
 
-                # Find the remaining ints to the right and set it to our b operand
-                right = range((len(ops) - 1) - i) 
+                # Find the remaining ints to the right and set it to our b operand and add one because
+                # for loops do not the run the last item in a range
+                right = range((((len(ops) - 1) - i) + 1)) 
                 for j in right: # loop through the list to find an int
                     if type(ops[i + j]) is int: # If we have one then 
                         b = ops[i + j] # assign it to the b variable
                         ops[i + j] = " " # make the space empty
-                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we already found the operand
+                    elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
+                        print("Incorrect Syntax right ^")
+                        print(ops[i + j])
                         exit()
 
                 c = a * b
                 ops[i] = c
                 ops[i - 1] = " "
                 ops[i + 1] = " "
-                i = 0
 
         for i in range(len(ops)):
             if ops[i] == "/":
-                # Find the remaning ints to the left and set it to our a operand
-                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                # Find the remaning ints to the left and set it to our a operand and add one because
+                # for loops do not run the last item in a range
+                left = range(((len(ops) - 1) - ((len(ops) - 1) - i) + 1)) 
                 for k in left: # Go through the list from the current index to the left most item in the index
                     if type(ops [i - k]) is int: # If the item we are currently on is an int
                         a = ops[i - k] # Then set it to the a operand
                         ops[i - k] = " " # Leave the space blank
-                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we've already found the operand
+                    elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
+                        print("Incorrect Syntax left ^")
                         exit()
 
-                # Find the remaining ints to the right and set it to our b operand
-                right = range((len(ops) - 1) - i) 
+                # Find the remaining ints to the right and set it to our b operand and add one because
+                # for loops do not the run the last item in a range
+                right = range((((len(ops) - 1) - i) + 1)) 
                 for j in right: # loop through the list to find an int
                     if type(ops[i + j]) is int: # If we have one then 
                         b = ops[i + j] # assign it to the b variable
                         ops[i + j] = " " # make the space empty
-                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we already found the operand
+                    elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
+                        print("Incorrect Syntax right ^")
+                        print(ops[i + j])
                         exit()
+
                 c = a / b
                 ops[i] = c
                 ops[i - 1] = " "
@@ -154,27 +171,31 @@ def calc(): # Calculator function
 
         for i in range(len(ops)):
             if ops[i] == "+":
-                # Find the remaning ints to the left and set it to our a operand
-                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                # Find the remaning ints to the left and set it to our a operand and add one because
+                # for loops do not run the last item in a range
+                left = range(((len(ops) - 1) - ((len(ops) - 1) - i) + 1)) 
                 for k in left: # Go through the list from the current index to the left most item in the index
-                    k + 1
                     if type(ops [i - k]) is int: # If the item we are currently on is an int
                         a = ops[i - k] # Then set it to the a operand
                         ops[i - k] = " " # Leave the space blank
-                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
-                        print("Incorrect Syntax left +")
+                        break # Break so that we don't print an error when we've already found the operand
+                    elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
+                        print("Incorrect Syntax left ^")
                         exit()
 
-                # Find the remaining ints to the right and set it to our b operand
-                right = range((len(ops) - 1) - i) 
+                # Find the remaining ints to the right and set it to our b operand and add one because
+                # for loops do not the run the last item in a range
+                right = range((((len(ops) - 1) - i) + 1)) 
                 for j in right: # loop through the list to find an int
-                    j + 1
                     if type(ops[i + j]) is int: # If we have one then 
                         b = ops[i + j] # assign it to the b variable
                         ops[i + j] = " " # make the space empty
-                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
-                        print("Incorrect Syntax right +")
+                        break # Break so that we don't print an error when we already found the operand
+                    elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
+                        print("Incorrect Syntax right ^")
+                        print(ops[i + j])
                         exit()
+
                 c = a + b
                 ops[i] = c
                 ops[i - 1] = " "
@@ -182,25 +203,31 @@ def calc(): # Calculator function
                 
         for i in range(len(ops)):
             if ops[i] == "-":
-                # Find the remaning ints to the left and set it to our a operand
-                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                # Find the remaning ints to the left and set it to our a operand and add one because
+                # for loops do not run the last item in a range
+                left = range(((len(ops) - 1) - ((len(ops) - 1) - i) + 1)) 
                 for k in left: # Go through the list from the current index to the left most item in the index
                     if type(ops [i - k]) is int: # If the item we are currently on is an int
                         a = ops[i - k] # Then set it to the a operand
                         ops[i - k] = " " # Leave the space blank
-                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we've already found the operand
+                    elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
+                        print("Incorrect Syntax left ^")
                         exit()
 
-                # Find the remaining ints to the right and set it to our b operand
-                right = range((len(ops) - 1) - i) 
+                # Find the remaining ints to the right and set it to our b operand and add one because
+                # for loops do not the run the last item in a range
+                right = range((((len(ops) - 1) - i) + 1)) 
                 for j in right: # loop through the list to find an int
                     if type(ops[i + j]) is int: # If we have one then 
                         b = ops[i + j] # assign it to the b variable
                         ops[i + j] = " " # make the space empty
-                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
-                        print("Incorrect Syntax")
+                        break # Break so that we don't print an error when we already found the operand
+                    elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
+                        print("Incorrect Syntax right ^")
+                        print(ops[i + j])
                         exit()
+
                 c = a - b
                 ops[i] = c
                 ops[i - 1] = " "
@@ -211,4 +238,4 @@ def calc(): # Calculator function
     print(noParen)
 
 if __name__ == "__main__":
-    pass
+    calc()
