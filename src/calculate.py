@@ -61,86 +61,151 @@ def calc(): # Calculator function
         # We'll also have to setup some error handling if symbols or operands are
         # not in their proper places
 
-        # I'm going to try using error handling to detect when we have no
-        # more operators. 
         for i in range(len(ops)):
             if ops[i] == "^":
 
-                # This is something I made that will help us identify ints
-                # When they are separated by spaces it will be useful later
-                # down the line
-                if type(ops[i - 1]) is int: # If the first item to the left is a number
-                    a = ops[i - 1] # Make that the variable a
-                else: # Otherwise 
-                    try:  #We'll loop through the remaining ints to the left
-                        for j in range(ops.index(ops[i])): 
-                            if type(ops[i - j]) is int :
-                                a = ops[i - j]
-                            else:
-                                print("Something went wrong else")
-                    except IndexError:
-                        print("Indexing went wrong except")
+                # Find the remaning ints to the left and set it to our a operand
+                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                for k in left: # Go through the list from the current index to the left most item in the index
+                    if type(ops [i - k]) is int: # If the item we are currently on is an int
+                        a = ops[i - k] # Then set it to the a operand
+                        ops[i - k] = " " # Leave the space blank
+                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
+                        print("Incorrect Syntax")
+                        exit()
 
-                b = ops[i + 1] # Find the operand on the right of the ^
+                # Find the remaining ints to the right and set it to our b operand
+                right = range((len(ops) - 1) - i) 
+                for j in right: # loop through the list to find an int
+                    if type(ops[i + j]) is int: # If we have one then 
+                        b = ops[i + j] # assign it to the b variable
+                        ops[i + j] = " " # make the space empty
+                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
+                        print("Incorrect Syntax")
+                        exit()
+                   
                 c = a ** b
                 ops[i] = c
-                # We can either delete the items in the list which will mess up 
-                # the for loop or replace them with a space and worry about
-                # cleaning it out later. Now I'm leaning towards the former.
+                # We can not delete the items because it will mess up the for
+                # loop so for know we will just empty them
 
                 # Empty the strings since we're going to raise this operand
                 # We can't delete them entirely because the length of ops
                 # won't be modifed
                 ops[i - 1] = " "
                 ops[i + 1] = " "
-                print(ops)
                 i = 0
 
-            # Then continue this process with every operator
-
+            # We need to go through each operator with
+            # a for loop
+        for i in range(len(ops)):
             if ops[i] == "*":
-                a = ops[i - 1] 
-                a = a
-                b = ops[i + 1] 
-                b = b
+               # Find the remaning ints to the left and set it to our a operand
+                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                for k in left: # Go through the list from the current index to the left most item in the index
+                    if type(ops [i - k]) is int: # If the item we are currently on is an int
+                        a = ops[i - k] # Then set it to the a operand
+                        ops[i - k] = " " # Leave the space blank
+                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
+                        print("Incorrect Syntax")
+                        exit()
+
+                # Find the remaining ints to the right and set it to our b operand
+                right = range((len(ops) - 1) - i) 
+                for j in right: # loop through the list to find an int
+                    if type(ops[i + j]) is int: # If we have one then 
+                        b = ops[i + j] # assign it to the b variable
+                        ops[i + j] = " " # make the space empty
+                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
+                        print("Incorrect Syntax")
+                        exit()
+
                 c = a * b
                 ops[i] = c
                 ops[i - 1] = " "
                 ops[i + 1] = " "
+                i = 0
 
+        for i in range(len(ops)):
             if ops[i] == "/":
-                a = ops[i - 1] 
-                a = int(a)
-                b = ops[i + 1] 
-                b = int(b)
+                # Find the remaning ints to the left and set it to our a operand
+                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                for k in left: # Go through the list from the current index to the left most item in the index
+                    if type(ops [i - k]) is int: # If the item we are currently on is an int
+                        a = ops[i - k] # Then set it to the a operand
+                        ops[i - k] = " " # Leave the space blank
+                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
+                        print("Incorrect Syntax")
+                        exit()
+
+                # Find the remaining ints to the right and set it to our b operand
+                right = range((len(ops) - 1) - i) 
+                for j in right: # loop through the list to find an int
+                    if type(ops[i + j]) is int: # If we have one then 
+                        b = ops[i + j] # assign it to the b variable
+                        ops[i + j] = " " # make the space empty
+                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
+                        print("Incorrect Syntax")
+                        exit()
                 c = a / b
                 ops[i] = c
                 ops[i - 1] = " "
                 ops[i + 1] = " "
 
+        for i in range(len(ops)):
             if ops[i] == "+":
-                a = ops[i - 1] 
-                a = int(a)
-                b = ops[i + 1] 
-                b = int(b)
+                # Find the remaning ints to the left and set it to our a operand
+                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                for k in left: # Go through the list from the current index to the left most item in the index
+                    k + 1
+                    if type(ops [i - k]) is int: # If the item we are currently on is an int
+                        a = ops[i - k] # Then set it to the a operand
+                        ops[i - k] = " " # Leave the space blank
+                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
+                        print("Incorrect Syntax left +")
+                        exit()
+
+                # Find the remaining ints to the right and set it to our b operand
+                right = range((len(ops) - 1) - i) 
+                for j in right: # loop through the list to find an int
+                    j + 1
+                    if type(ops[i + j]) is int: # If we have one then 
+                        b = ops[i + j] # assign it to the b variable
+                        ops[i + j] = " " # make the space empty
+                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
+                        print("Incorrect Syntax right +")
+                        exit()
                 c = a + b
                 ops[i] = c
                 ops[i - 1] = " "
                 ops[i + 1] = " "
-
+                
+        for i in range(len(ops)):
             if ops[i] == "-":
-                a = ops[i - 1] 
-                a = int(a)
-                b = ops[i + 1] 
-                b = int(b)
+                # Find the remaning ints to the left and set it to our a operand
+                left = range((len(ops) - 1) - ((len(ops) - 1) - i))
+                for k in left: # Go through the list from the current index to the left most item in the index
+                    if type(ops [i - k]) is int: # If the item we are currently on is an int
+                        a = ops[i - k] # Then set it to the a operand
+                        ops[i - k] = " " # Leave the space blank
+                    elif ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-":
+                        print("Incorrect Syntax")
+                        exit()
+
+                # Find the remaining ints to the right and set it to our b operand
+                right = range((len(ops) - 1) - i) 
+                for j in right: # loop through the list to find an int
+                    if type(ops[i + j]) is int: # If we have one then 
+                        b = ops[i + j] # assign it to the b variable
+                        ops[i + j] = " " # make the space empty
+                    elif ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-":
+                        print("Incorrect Syntax")
+                        exit()
                 c = a - b
                 ops[i] = c
                 ops[i - 1] = " "
                 ops[i + 1] = " "
-
-
-
-
+                
     
     print(ops)
     print(noParen)
