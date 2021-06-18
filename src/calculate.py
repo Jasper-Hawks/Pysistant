@@ -25,11 +25,17 @@ def calc(): # Calculator function
     c = 0
 
     for i in range(len(eq)):
-        if eq[i] != " ":
-            
-            try: # Convert all ints to ints
+        # TODO Refactor this so that invalid characters are not
+        # in the input of the equation. Currently this is throwing
+        # an exception. Maybe we could put the if statement in the 
+        # try statement
+        try: # Convert all ints to ints
                 eq[i] = int(eq[i])
-            except:
+        except ValueError:
+            if eq[i] != "^" or eq[i] != "*" or eq[i] != "+" or eq[i] != "-" or eq[i] != "/" or eq[i] != "(" or eq[i] != ")" or eq[i] != " ":
+                print("Invalid input")
+                exit()
+            else:
                 pass
 
             ops.append(eq[i])
@@ -89,7 +95,6 @@ def calc(): # Calculator function
                         break # Break so that we don't print an error when we already found the operand
                     elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
                         print("Incorrect Syntax right ^")
-                        print(ops[i + j])
                         exit()
                    
                 c = a ** b
@@ -129,7 +134,6 @@ def calc(): # Calculator function
                         break # Break so that we don't print an error when we already found the operand
                     elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
                         print("Incorrect Syntax right ^")
-                        print(ops[i + j])
                         exit()
 
                 c = a * b
@@ -161,7 +165,6 @@ def calc(): # Calculator function
                         break # Break so that we don't print an error when we already found the operand
                     elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
                         print("Incorrect Syntax right ^")
-                        print(ops[i + j])
                         exit()
 
                 c = a / b
@@ -193,7 +196,6 @@ def calc(): # Calculator function
                         break # Break so that we don't print an error when we already found the operand
                     elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
                         print("Incorrect Syntax right ^")
-                        print(ops[i + j])
                         exit()
 
                 c = a + b
@@ -225,7 +227,6 @@ def calc(): # Calculator function
                         break # Break so that we don't print an error when we already found the operand
                     elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
                         print("Incorrect Syntax right ^")
-                        print(ops[i + j])
                         exit()
 
                 c = a - b
@@ -233,9 +234,10 @@ def calc(): # Calculator function
                 ops[i - 1] = " "
                 ops[i + 1] = " "
                 
-    
-    print(ops)
-    print(noParen)
+    for i in ops:
+        if type(i) is int:
+            print("Your answer is: " + str(i))
+
 
 if __name__ == "__main__":
     calc()
