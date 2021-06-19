@@ -27,7 +27,7 @@ def calc(ops):
                     ops[i - k] = " " # Leave the space blank
                     break # Break so that we don't print an error when we've already found the operand
                 elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
-                    print("Incorrect Syntax left ^")
+                    print("Incorrect Syntax")
                     exit()
 
             # Find the remaining ints to the right and set it to our b operand and add one because
@@ -39,7 +39,7 @@ def calc(ops):
                     ops[i + j] = " " # make the space empty
                     break # Break so that we don't print an error when we already found the operand
                 elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
-                    print("Incorrect Syntax right ^")
+                    print("Incorrect Syntax")
                     exit()
                 
             c = a ** b
@@ -66,7 +66,7 @@ def calc(ops):
                     ops[i - k] = " " # Leave the space blank
                     break # Break so that we don't print an error when we've already found the operand
                 elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
-                    print("Incorrect Syntax left ^")
+                    print("Incorrect Syntax")
                     exit()
 
             # Find the remaining ints to the right and set it to our b operand and add one because
@@ -78,7 +78,7 @@ def calc(ops):
                     ops[i + j] = " " # make the space empty
                     break # Break so that we don't print an error when we already found the operand
                 elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
-                    print("Incorrect Syntax right ^")
+                    print("Incorrect Syntax")
                     exit()
 
             c = a * b
@@ -97,7 +97,7 @@ def calc(ops):
                     ops[i - k] = " " # Leave the space blank
                     break # Break so that we don't print an error when we've already found the operand
                 elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
-                    print("Incorrect Syntax left ^")
+                    print("Incorrect Syntax")
                     exit()
 
             # Find the remaining ints to the right and set it to our b operand and add one because
@@ -109,7 +109,7 @@ def calc(ops):
                     ops[i + j] = " " # make the space empty
                     break # Break so that we don't print an error when we already found the operand
                 elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
-                    print("Incorrect Syntax right ^")
+                    print("Incorrect Syntax")
                     exit()
 
             c = a / b
@@ -128,7 +128,7 @@ def calc(ops):
                     ops[i - k] = " " # Leave the space blank
                     break # Break so that we don't print an error when we've already found the operand
                 elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
-                    print("Incorrect Syntax left ^")
+                    print("Incorrect Syntax")
                     exit()
 
             # Find the remaining ints to the right and set it to our b operand and add one because
@@ -140,7 +140,7 @@ def calc(ops):
                     ops[i + j] = " " # make the space empty
                     break # Break so that we don't print an error when we already found the operand
                 elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
-                    print("Incorrect Syntax right ^")
+                    print("Incorrect Syntax")
                     exit()
 
             c = a + b
@@ -159,7 +159,7 @@ def calc(ops):
                     ops[i - k] = " " # Leave the space blank
                     break # Break so that we don't print an error when we've already found the operand
                 elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
-                    print("Incorrect Syntax left ^")
+                    print("Incorrect Syntax")
                     exit()
 
             # Find the remaining ints to the right and set it to our b operand and add one because
@@ -171,7 +171,7 @@ def calc(ops):
                     ops[i + j] = " " # make the space empty
                     break # Break so that we don't print an error when we already found the operand
                 elif (ops[i + j] == "^" or ops[i + j] == "*" or ops[i + j] == "/" or ops[i + j] == "+" or ops[i + j] == "-") and ops.index(ops[i + j]) != ops.index(ops[i]):
-                    print("Incorrect Syntax right ^")
+                    print("Incorrect Syntax")
                     exit()
 
             c = a - b
@@ -206,10 +206,10 @@ def logic(): # This handles setting up the equation before we run it through the
     # For Example (2 + 2)* 2
     eq = input("Submit your equation: ")
     eq = list(eq)
-    #print(eq)
     ops = []
     noParen = True
-
+    #TODO Rename this variable
+    d = [] # This will be the parethesis array
 
     for i in range(len(eq)):
         if eq[i] == "^" or eq[i] == "*" or eq[i] == "+" or eq[i] == "-" or eq[i] == "/" or eq[i] == "(" or eq[i] == ")" or eq[i] == " ":
@@ -224,25 +224,53 @@ def logic(): # This handles setting up the equation before we run it through the
 
         ops.append(eq[i])
 
-        try: 
-            if eq[i].count("(") != 0 or eq[i].count(")") != 0:
+    if eq.count("(") != 0 or eq.count(")") != 0:
 
-                noParen = False # We have parenthesis
-                # TODO Insert count code here
-                # Count the number of parenthesis if this is the case
-        except AttributeError:
-            pass
+        noParen = False # We have parenthesis
+        # Count the number of parenthesis if this is the case
+        leftPar = eq.count("(")
+        rightPar = eq.count(")")
 
+        if leftPar == rightPar:
+            print("Parenthesis code")
+            #TODO start to create the parenthesis code
+            #
+            # Plan:
+            # We could find the equation in the innermost parethesis
+            # then calculate the answer return it and continue until
+            # we have answers within parenthesis. Then we remove all 
+            # of the parenthesis and plug that into the calc function
+            #
+            # Problems:
+            # After we make sure that we have an equal amount of parenthesis
+            # then we only have to worry about how they are formatted within
+            # the equation. We should be able to develop something that matches
+            # right parenthesis with left parenthesis. 
+            print(eq)
+            for i in range(len(eq)):
+                if eq[i] == ")":
+                    # We can reuse this code from the calc function 
+                    # to find parenthesis to the left
+                    left = range(((len(eq) - 1) - ((len(eq) - 1) - i) + 1))
+                    for j in left:
+                        if eq[i - j] == "(":
+                            k = (i - j) + 1
+                            #TODO Refactor this
+                            # we are getting an 
+                            # infinite loop
+                            while eq[k] != ")":
+                                d.append(eq[k])
+                                k + 1
+                                print(d)
+                           
+            
         else:
-            noParen = True
+            print("Invalid input of parenthesis")
+    else:
+        noParen = True
 
-        
-    print(ops)
     if noParen is True:
         calc(eq)
-    else: 
-        print("We have parenthesis")
-        
 
 if __name__ == "__main__":
     logic()
