@@ -1,4 +1,6 @@
-def calc(ops):
+#TODO Refactor the logic function since we 
+# changed the noParen boolean to a parameter
+def calc(ops,noParen):
     # Then we simply have to evaluate each operator and operand according
     # to the order of operations as follows
     # Exponents 
@@ -178,11 +180,15 @@ def calc(ops):
             ops[i] = c
             ops[i - 1] = " "
             ops[i + 1] = " "
-
-    for i in ops: # Check every item in the list
-        if type(i) is int: # If that item is an int
-            print("Your answer is: " + str(i)) # Then print it
-            exit() # and exit
+    if noParen is True:
+        for i in ops: # Check every item in the list
+            if type(i) is int: # If that item is an int
+                print("Your answer is: " + str(i)) # Then print it
+                exit() # and exit
+    elif noParen is False:
+        for i in ops:
+            if type(i) is int:
+                return i
     # We should not see this since we exit early but if we don't have any ints in
     # the list then this will be printed
     print("Answer not found")
@@ -207,7 +213,6 @@ def logic(): # This handles setting up the equation before we run it through the
     eq = input("Submit your equation: ")
     eq = list(eq)
     ops = []
-    noParen = True
     #TODO Rename this variable
     d = [] # This will be the parethesis array
 
@@ -233,8 +238,6 @@ def logic(): # This handles setting up the equation before we run it through the
 
         if leftPar == rightPar:
             print("Parenthesis code")
-            #TODO start to create the parenthesis code
-            #
             # Plan:
             # We could find the equation in the innermost parethesis
             # then calculate the answer return it and continue until
@@ -247,30 +250,44 @@ def logic(): # This handles setting up the equation before we run it through the
             # the equation. We should be able to develop something that matches
             # right parenthesis with left parenthesis. 
             print(eq)
-            for i in range(len(eq)):
-                if eq[i] == ")":
+            for i in range(len(eq)):# Go through the indexes of items within the eq list
+                if eq[i] == ")": # If we find a right parenthesis
                     # We can reuse this code from the calc function 
                     # to find parenthesis to the left
                     left = range(((len(eq) - 1) - ((len(eq) - 1) - i) + 1))
-                    for j in left:
-                        if eq[i - j] == "(":
-                            k = (i - j) + 1
-                            #TODO Refactor this
-                            # we are getting an 
-                            # infinite loop
-                            while eq[k] != ")":
-                                d.append(eq[k])
-                                k + 1
-                                print(d)
-                           
-            
+                    for j in left: # Then we search the list
+                        if eq[i - j] == "(": # We look for the left parenthesis
+                            k = (i - j) + 1 # We don't want to append the left parenthesis to the equation
+                            while eq[k] != ")": # While we aren't on a right parenthesis
+                                d.append(eq[k]) #Append the values to a new list
+                                k += 1 # Increment the variable for finding indexes
+                                print(d) # TEST CODE
+                            # TODO Rename this variable too
+                            e = calc(d,noParen=False) # Then calculate the answer to the equation within the parenthesis
+                            eq[i - j] = e # Replace the left with the answer
+                            #eq[i] = " " # Delete the right parenthesis
+                            # I wonder if we should just make this into a function
+                            # or keep going with these nested loops. Let's try the
+                            # latter
+                            print(eq) # TEST CODE
+                            for l in range(len(eq)): # Go through the equation again
+                                #TODO this if is not working correctly
+                                if eq[l] == "(" or eq[l] == ")": # If we find a parenthesis
+                                    break # Then break out of the for loop
+                                else: # Otherwise
+                                    try: 
+                                        eq[l + 1] = " " # Try to empty out the rest of the variables skipping over the first index
+                                    except: # We'll run into an out of bounds error
+                                        pass # So we'll pass
+                            print(eq)
+        
         else:
             print("Invalid input of parenthesis")
     else:
         noParen = True
 
     if noParen is True:
-        calc(eq)
+        calc(eq,noParen=True)
 
 if __name__ == "__main__":
     logic()
