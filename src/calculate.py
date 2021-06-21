@@ -263,24 +263,23 @@ def logic(): # This handles setting up the equation before we run it through the
                                 k += 1 # Increment the variable for finding indexes
                                 print(d) # TEST CODE
                             # TODO Rename this variable too
-                            e = calc(d,noParen=False) # Then calculate the answer to the equation within the parenthesis
+                            e = calc(d,False) # Then calculate the answer to the equation within the parenthesis
                             eq[i - j] = e # Replace the left with the answer
                             #eq[i] = " " # Delete the right parenthesis
                             # I wonder if we should just make this into a function
                             # or keep going with these nested loops. Let's try the
                             # latter
                             print(eq) # TEST CODE
-                            for l in range(len(eq)): # Go through the equation again
-                                #TODO this if is not working correctly
-                                if eq[l] == "(" or eq[l] == ")": # If we find a parenthesis
-                                    break # Then break out of the for loop
-                                else: # Otherwise
+                            for l in range(i): # Go through the equation again
+                                #TODO Refactor this it is not working correctly
                                     try: 
                                         eq[l + 1] = " " # Try to empty out the rest of the variables skipping over the first index
                                     except: # We'll run into an out of bounds error
-                                        pass # So we'll pass
+                                        break # So we'll pass
                             print(eq)
-        
+
+            #calc(eq,True)
+
         else:
             print("Invalid input of parenthesis")
     else:
