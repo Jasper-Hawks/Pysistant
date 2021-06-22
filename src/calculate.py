@@ -259,7 +259,6 @@ def logic(): # This handles setting up the equation before we run it through the
                                 calcArray.append(eq[k]) #Append the values to a new list
                                 eq[k] = " " # While removing them from the list
                                 k += 1 # Increment the variable for finding indexes
-                            # TODO Rename this variable too
                             ans = calc(calcArray,False) # Then calculate the answer to the equation within the parenthesis
                             eq[(i - j) + 1] = ans # Replace the left with the answer
                             calcArray.clear() # Clear the array so that we 
