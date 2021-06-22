@@ -1,5 +1,3 @@
-#TODO Refactor the logic function since we 
-# changed the noParen boolean to a parameter
 def calc(ops,noParen):
     # Then we simply have to evaluate each operator and operand according
     # to the order of operations as follows
@@ -18,8 +16,8 @@ def calc(ops,noParen):
     b = 0
     c = 0
 
-    for i in range(len(ops)):
-        if ops[i] == "^":
+    for i in range(len(ops)): # Go through the entire list
+        if ops[i] == "^": # If the current index equals ^ 
             # Find the remaning ints to the left and set it to our a operand and add one because
             # for loops do not run the last item in a range
             left = range(((len(ops) - 1) - ((len(ops) - 1) - i) + 1)) 
@@ -29,6 +27,8 @@ def calc(ops,noParen):
                     ops[i - k] = " " # Leave the space blank
                     break # Break so that we don't print an error when we've already found the operand
                 elif (ops[i - k] == "^" or ops[i - k] == "*" or ops[i - k] == "/" or ops[i - k] == "+" or ops[i - k] == "-") and ops.index(ops[i - k ]) != ops.index(ops[i]):
+                    # If we have some other character that does not match those above 
+                    # Then we print this error message and exit the program
                     print("Incorrect Syntax")
                     exit()
 
@@ -180,6 +180,7 @@ def calc(ops,noParen):
             ops[i] = c
             ops[i - 1] = " "
             ops[i + 1] = " "
+    
     if noParen is True:
         for i in ops: # Check every item in the list
             if type(i) is int: # If that item is an int
@@ -210,34 +211,31 @@ def logic(): # This handles setting up the equation before we run it through the
     #
     # Operators that are on the outside of parenthesis
     # For Example (2 + 2)* 2
-    eq = input("Submit your equation: ")
-    eq = list(eq)
-    ops = []
-    #TODO Rename this variable
-    d = [] # This will be the parethesis array
+    eq = input("Submit your equation: ") # Prompt the user to submit an equation
+    eq = list(eq) # Then convert it to a list
+    calcArray = [] # This will be the parethesis array with the equations inside of it
 
-    for i in range(len(eq)):
+    for i in range(len(eq)): # Go through the entire list
+        # Finding any of the characters below is fine
         if eq[i] == "^" or eq[i] == "*" or eq[i] == "+" or eq[i] == "-" or eq[i] == "/" or eq[i] == "(" or eq[i] == ")" or eq[i] == " ":
             pass
-        else: 
+        else: # Other characters will be converted to int
             try:
                 eq[i] = int(eq[i])
 
-            except ValueError:
+            except ValueError: # Otherwise that character is not acceptable and we will exit the program
                     print("Invalid input")
                     exit()
 
-        ops.append(eq[i])
-
-    if eq.count("(") != 0 or eq.count(")") != 0:
+    # Then we make sure that we check to see if we have any parenthesis
+    if eq.count("(") != 0 or eq.count(")") != 0: # If we have more than one parenthesis
 
         noParen = False # We have parenthesis
         # Count the number of parenthesis if this is the case
         leftPar = eq.count("(")
         rightPar = eq.count(")")
 
-        if leftPar == rightPar:
-            print("Parenthesis code")
+        if leftPar == rightPar: # If they are equal then we can properly work through the equation
             # Plan:
             # We could find the equation in the innermost parethesis
             # then calculate the answer return it and continue until
@@ -249,7 +247,6 @@ def logic(): # This handles setting up the equation before we run it through the
             # then we only have to worry about how they are formatted within
             # the equation. We should be able to develop something that matches
             # right parenthesis with left parenthesis. 
-            print(eq)
             for i in range(len(eq)):# Go through the indexes of items within the eq list
                 if eq[i] == ")": # If we find a right parenthesis
                     # We can reuse this code from the calc function 
@@ -259,34 +256,25 @@ def logic(): # This handles setting up the equation before we run it through the
                         if eq[i - j] == "(": # We look for the left parenthesis
                             k = (i - j) + 1 # We don't want to append the left parenthesis to the equation
                             while eq[k] != ")": # While we aren't on a right parenthesis
-                                d.append(eq[k]) #Append the values to a new list
+                                calcArray.append(eq[k]) #Append the values to a new list
+                                eq[k] = " " # While removing them from the list
                                 k += 1 # Increment the variable for finding indexes
-                                print(d) # TEST CODE
                             # TODO Rename this variable too
-                            e = calc(d,False) # Then calculate the answer to the equation within the parenthesis
-                            eq[i - j] = e # Replace the left with the answer
-                            #eq[i] = " " # Delete the right parenthesis
-                            # I wonder if we should just make this into a function
-                            # or keep going with these nested loops. Let's try the
-                            # latter
-                            print(eq) # TEST CODE
-                            for l in range(i): # Go through the equation again
-                                #TODO Refactor this it is not working correctly
-                                    try: 
-                                        eq[l + 1] = " " # Try to empty out the rest of the variables skipping over the first index
-                                    except: # We'll run into an out of bounds error
-                                        break # So we'll pass
-                            print(eq)
+                            ans = calc(calcArray,False) # Then calculate the answer to the equation within the parenthesis
+                            eq[(i - j) + 1] = ans # Replace the left with the answer
+                            calcArray.clear() # Clear the array so that we 
+                            break # Break out from the for loop so that we can find more right parenthesis
+                            
+            # Once this for loop is done then we can calc without Parenthesis
+            calc(eq,True) 
 
-            #calc(eq,True)
-
-        else:
-            print("Invalid input of parenthesis")
-    else:
+        else: # Otherwise the parenthesis are not equal
+            print("Invalid number of parenthesis")
+    else: # Otherwise we have no parenthesis
         noParen = True
 
-    if noParen is True:
-        calc(eq,noParen=True)
+    if noParen is True: # Then we can just calculate without having to worry about parenthesis
+        calc(ops,True)
 
 if __name__ == "__main__":
     logic()
