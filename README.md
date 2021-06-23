@@ -3,7 +3,7 @@ A CLI Python Assistant who can complete mundane tasks for you.
 
 ## Features
 * [x] Calculator (Fundamentals)
-* [ ] Todo list (File I/O)
+* [x] Todo list (File I/O)
 * [ ] Dictonary (Working with libraries)
 * [ ] Stopwatch (Fundamentals)
 * [ ] Timers (Fundamentals)
