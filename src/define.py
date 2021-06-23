@@ -6,7 +6,7 @@ def define():
     word = input("What word would you like to define?:") # Prompt the user to enter something this will be removed at a later date
 
     r = requests.get("http://wordnetweb.princeton.edu/perl/webwn/webwn?o2=&o0=1&o8=1&o1=1&o7=&o5=&o9=&o6=&o3=&o4=&s=" + word).text
-    # Request the html of the wordnet site 
+    # Request the html of the wordnet site
 
     soup = BeautifulSoup(r,'html.parser') # Create a soup so that we can scrape elements off of the site
 
