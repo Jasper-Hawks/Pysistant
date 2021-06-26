@@ -24,7 +24,7 @@ def setup(): # Sets up the directory and many other dependencies needed for the 
 
 
 def read(): # Function to read the file
-    dir = os.getcwd()
+    cwd = os.getcwd()
 
 
 def write(): # Function to write to the file
@@ -34,13 +34,45 @@ def write(): # Function to write to the file
     note = input("What would you like your note to be?\n")
     dir = open("dir.txt", "r")
     todoDir = dir.readline()
-    print(todoDir)
     todoDir = todoDir + "TODO/"
     os.chdir(todoDir)
-    todo = open("TODO.txt" ,"w")
-    todo.write(note)
+    todo = open("todo.txt" ,"r")
+    numOfLines = len(todo.readlines()) + 1
+
+    # TODO Eventually we will have to consolidate the 
+    # lines in order for them to update accordingly
+    # but for now I'll use this method to see if it works
+    todo = open("todo.txt" ,"a")
+    todo.write(str(numOfLines)+ ": " + note + "\n")
     todo.close()
+
+def remove(): # Function to remove notes from TODO
+    # We need to first handle lines and their numbers
+    # Then completely remove the line from the file
+    # This should be all that we need to do in this function
+    
+    dir = open("dir.txt", "r")
+    todoDir = dir.readline()
+    todoDir = todoDir + "TODO/"
+    os.chdir(todoDir)
+    todo = open("todo.txt" ,"r")
+    numOfLines = todo.readlines()
+
+    line = input("Which line would you like to remove?")
+    line = int(line)
+    for i in range(len(numOfLines)):
+        if i == line - 1:
+            todo = open("todo.txt", "r")
+            todoLines = todo.readlines()
+            # Eventually we'll have to modify each item in the
+            # list individually in order to consolidate the list
+            del todoLines[line - 1]
+            todo = open("todo.txt", "w")
+            for k in todoLines:
+                todo.write(k)
+            break
+
 
 if __name__ == "__main__":
     #TODO Change this eventually
-    write()
+    remove()
