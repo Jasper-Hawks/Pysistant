@@ -1,4 +1,7 @@
 # Pysistant
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8274b7d317e04163ba89a9523515e92c)](https://app.codacy.com/gh/Jasper-Hawks/Pysistant?utm_source=github.com&utm_medium=referral&utm_content=Jasper-Hawks/Pysistant&utm_campaign=Badge_Grade_Settings)
+
 A CLI Python Assistant who can complete mundane tasks for you.
 
 ## Features
