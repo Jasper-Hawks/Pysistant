@@ -273,7 +273,7 @@ def logic(): # This handles setting up the equation before we run it through the
         noParen = True
 
     if noParen is True: # Then we can just calculate without having to worry about parenthesis
-        calc(ops,True)
+        calc(eq,True)
 
 if __name__ == "__main__":
     logic()

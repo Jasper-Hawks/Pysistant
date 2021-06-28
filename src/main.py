@@ -1,14 +1,12 @@
 # Author: Jasper Hawks
 
-from calculate import calc
-from define import define
+from calculate import *
+from define import *
+from time import *
+from todo import *
 
 def main():
-    a = input(" c = calc, d = define: ")
-    if a == "c" or a == "C":
-         calc()
-    elif a == "d" or a == "D":
-        define()
+    pass
 
 if __name__ == "__main__":
     main()
