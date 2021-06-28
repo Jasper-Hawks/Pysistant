@@ -1,10 +1,11 @@
 import time
+import cli.app
 
 def timer(): # Function for the timer
 
     sec = 0 # Set seconds to 0
     try:
-        minute = input("How many minutes would you like to time") # Prompt the user to input a number of minutes
+        minute = input("How many minutes would you like to time:") # Prompt the user to input a number of minutes
         minute = int(minute) # Convert the string to int
         while minute >= 0: # While minutes are not greater than or equal to 0
             while sec >= 0: # While seconds are greater or equal to 0
@@ -40,4 +41,4 @@ def stopwatch():
             print(str(minute) + ":" + str(sec), end="\r")
 
 if __name__ == "__main__":
-    timer()
+    stopwatch()

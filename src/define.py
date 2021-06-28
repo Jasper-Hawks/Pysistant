@@ -1,6 +1,6 @@
 import requests # Import requests so that we can requests websites to scrape data from
 from bs4 import BeautifulSoup # Import Beautiful Soup so we can find elements in the html we get from requests
-import re # Import Regex so that we can replace certain parts of the definitions 
+import re # Import Regex so that we can replace certain parts of the definitions
 
 def define():
     word = input("What word would you like to define?:") # Prompt the user to enter something this will be removed at a later date
@@ -17,5 +17,3 @@ def define():
 
         print(defins) # Print the definitions to the screen
 
-if __name__ == "__main__":
-    define()
