@@ -15,6 +15,7 @@ A CLI Python Assistant who can complete mundane tasks for you.
 Clone the repository and export the src directory to PATH like so:
 
 ```export PATH=/path/to/repository/:$PATH```
+
 You'll want to always have this in the repository's directory since the other py files are dependencies.
 
 ## Dependencies
@@ -39,6 +40,7 @@ Commands:
   w   Write to the TODO list file
 ```
 Using Pysistant is as simple as typing in pys and the command, for example:
+
 ```pys d```
 to define a word
 
