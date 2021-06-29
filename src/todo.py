@@ -14,10 +14,13 @@ def setup(): # Sets up the directory and many other dependencies needed for the 
         dir = input("In what directory would you like your TODO list to be stored?\n")
 
     try: # Make the directory and todo file
-        os.makedirs(dir + "/TODO/todo.txt") # Recursivley create directories
+        os.makedirs(dir + "/TODO/") # Recursivley create directories
         dirFile = open("dir.txt","w") # Create the dir directory so that the variable persist
         dirFile.write(dir) # Write to the file the directory we were given
         dirFile.close() # Close the file
+        os.chdir(dir + "/TODO/")
+        todoFile = open("todo.txt","w")
+        todoFile.close()
     except PermissionError: # If permission is denied
         print("Permission denied")
     except FileExistsError: # If the directory inputted is the same as the previous one
@@ -27,8 +30,11 @@ def setup(): # Sets up the directory and many other dependencies needed for the 
 def read(): # Function to read the file
 
     # This block of code is repeated in all functions
+    try:
+        dir = open("dir.txt", "r") # Open the dir file and read from it
+    except:
+        print("dir.txt does not exist. Remove TODO directory and file and run setup again")
 
-    dir = open("dir.txt", "r") # Open the dir file and read from it
     todoDir = dir.readline() # Read the first line
     todoDir = todoDir + "TODO/" # Append the TODO directory to the directory
     os.chdir(todoDir) # Go to that directory
@@ -43,7 +49,10 @@ def write(): # Function to write to the file
 
     # First we need to find the TODO file then write to it
     note = input("What would you like your note to be?\n")
-    dir = open("dir.txt", "r")
+    try:
+        dir = open("dir.txt", "r") # Open the dir file and read from it
+    except:
+        print("dir.txt does not exist. Remove TODO directory and file and run setup again")
     todoDir = dir.readline()
     todoDir = todoDir + "TODO/"
     os.chdir(todoDir)
@@ -53,7 +62,7 @@ def write(): # Function to write to the file
     numOfLines = len(todo.readlines()) + 1
 
     todo = open("todo.txt" ,"a") # Open the todo file and append to it
-    todo.write(str(numOfLines)+ ": " + note + "\n") # Write to the file with the numOfLines being the number of the entry
+    todo.write(str(numOfLines)+ ": " + note ) # Write to the file with the numOfLines being the number of the entry
     todo.close() # Close the file
 
 def remove(): # Function to remove notes from TODO
@@ -61,7 +70,10 @@ def remove(): # Function to remove notes from TODO
     # Then completely remove the line from the file
     # This should be all that we need to do in this function
 
-    dir = open("dir.txt", "r")
+    try:
+        dir = open("dir.txt", "r") # Open the dir file and read from it
+    except:
+        print("dir.txt does not exist. Remove TODO directory and file and run setup again")
     todoDir = dir.readline()
     todoDir = todoDir + "TODO/"
     os.chdir(todoDir)
