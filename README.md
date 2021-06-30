@@ -6,7 +6,7 @@ A CLI Python Assistant who can complete mundane tasks for you.
 
 ## Features
 * [x] Calculator (Read about the development [here](https://jasperhawks.netlify.app/blogposts/pysistant/completion%20of%20the%20calculator))
-* [x] Todo list (File I/O) ** THE TODO LIST IS NOT FUNCTIONING PROPERLY**
+* [ ] Todo list (File I/O) 
 * [x] Dictonary (Working with libraries)
 * [x] Stopwatch (Fundamentals)
 * [x] Timers (Fundamentals)
