@@ -2,11 +2,11 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8274b7d317e04163ba89a9523515e92c)](https://app.codacy.com/gh/Jasper-Hawks/Pysistant?utm_source=github.com&utm_medium=referral&utm_content=Jasper-Hawks/Pysistant&utm_campaign=Badge_Grade_Settings)
 
-A CLI Python Assistant who can complete mundane tasks for you.
+A CLI Python Assistant who can complete mundane tasks for you. 
 
 ## Features
 * [x] Calculator (Read about the development [here](https://jasperhawks.netlify.app/blogposts/pysistant/completion%20of%20the%20calculator))
-* [ ] Todo list (File I/O) 
+* [ ] Todo list (File I/O) The TODO list only works inside of the pysistant dirctory.
 * [x] Dictonary (Working with libraries)
 * [x] Stopwatch (Fundamentals)
 * [x] Timers (Fundamentals)
@@ -16,7 +16,7 @@ Clone the repository and export the src directory to PATH like so:
 
 ```export PATH=/path/to/repository/:$PATH```
 
-You'll want to always have this in the repository's directory since the other py files are dependencies.
+You'll want to always have this in the repository's directory since the other py files are dependencies. 
 
 ## Dependencies
 bs4, click and requests. Just install those with pip.
