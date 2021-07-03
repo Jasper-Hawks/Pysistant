@@ -21,6 +21,7 @@ def setup(): # Sets up the directory and many other dependencies needed for the 
         os.chdir(dir + "/TODO/")
         todoFile = open("todo.txt","w")
         todoFile.close()
+        print("Make sure to export this directory to PATH")
     except PermissionError: # If permission is denied
         print("Permission denied")
     except FileExistsError: # If the directory inputted is the same as the previous one
@@ -62,7 +63,7 @@ def write(): # Function to write to the file
     numOfLines = len(todo.readlines()) + 1
 
     todo = open("todo.txt" ,"a") # Open the todo file and append to it
-    todo.write(str(numOfLines)+ ": " + note ) # Write to the file with the numOfLines being the number of the entry
+    todo.write(str(numOfLines)+ ": " + note + "\n") # Write to the file with the numOfLines being the number of the entry
     todo.close() # Close the file
 
 def remove(): # Function to remove notes from TODO
