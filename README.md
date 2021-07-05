@@ -18,8 +18,6 @@ Clone the repository and export the src directory to PATH like so:
 
 You'll want to always have this in the repository's directory since the other py files are dependencies. 
 
-You'll also want to move the pys.py file to /usr/local/bin or somewhere equivalent
-
 ## Dependencies
 bs4, click and requests. Just install those with pip.
 
