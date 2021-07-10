@@ -221,12 +221,19 @@ def logic(): # This handles setting up the equation before we run it through the
             pass
         else: # Other characters will be converted to int
             try:
-                eq[i] = int(eq[i])
-
+                for j in range(len(eq)): #TODO Figure out why multi digit numbers do not compute
+                    j + 1
+                    if eq[i+ j] != " ":
+                        eq[i] = eq[i] + eq[i+j]
+                        eq[i+j] = " "
+                    else:
+                        break
+            except IndexError:
+                break
             except ValueError: # Otherwise that character is not acceptable and we will exit the program
                     print("Invalid input")
                     exit()
-
+    print(eq)
     # Then we make sure that we check to see if we have any parenthesis
     if eq.count("(") != 0 or eq.count(")") != 0: # If we have more than one parenthesis
 
