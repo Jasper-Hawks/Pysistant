@@ -220,15 +220,18 @@ def logic(): # This handles setting up the equation before we run it through the
         if eq[i] == "^" or eq[i] == "*" or eq[i] == "+" or eq[i] == "-" or eq[i] == "/" or eq[i] == "(" or eq[i] == ")" or eq[i] == " ":
             pass
         else: # Other characters will be converted to int
+            j = 1
             try:
-                for j in range(len(eq)): #TODO Figure out why multi digit numbers do not compute
-                    j + 1
+                while j < len(eq):
                     if eq[i+ j] != " ":
                         eq[i] = eq[i] + eq[i+j]
                         eq[i+j] = " "
                     else:
                         break
-            except IndexError:
+                    j + 1
+                    print(j)
+            except IndexError: # Index Error Handling is probably the problem when it comes to multi digit integers
+                print("Index Error")
                 break
             except ValueError: # Otherwise that character is not acceptable and we will exit the program
                     print("Invalid input")
