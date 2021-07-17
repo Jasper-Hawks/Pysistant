@@ -223,15 +223,16 @@ def logic(): # This handles setting up the equation before we run it through the
             j = 1
             try:
                 while j < len(eq):
-                    if eq[i+ j] != " ":
+                    print(j)
+                    if eq[i+ j] != " " or eq[i + j] != "^" or eq[i+j] != "*" or eq[i+j] != "+" or eq[i+j] != "-" or eq[i+j] != "/" or eq[i+j] != "(" or eq[i+j] != ")":
                         eq[i] = eq[i] + eq[i+j]
                         eq[i+j] = " "
                     else:
                         break
-                    j + 1
+                    j += 1
                     print(j)
             except IndexError: # Index Error Handling is probably the problem when it comes to multi digit integers
-                print("Index Error")
+                print("I erro")
                 break
             except ValueError: # Otherwise that character is not acceptable and we will exit the program
                     print("Invalid input")
