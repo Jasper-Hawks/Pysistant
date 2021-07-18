@@ -219,25 +219,30 @@ def logic(): # This handles setting up the equation before we run it through the
         # Finding any of the characters below is fine
         if eq[i] == "^" or eq[i] == "*" or eq[i] == "+" or eq[i] == "-" or eq[i] == "/" or eq[i] == "(" or eq[i] == ")" or eq[i] == " ":
             pass
-        else: # Other characters will be converted to int
-            j = 1
+        else: # Otherwise we have an int or some other invalid character
+            j = 1 # Instantiate the while variable
             try:
-                while j < len(eq):
-                    print(j)
-                    if eq[i+ j] != " " or eq[i + j] != "^" or eq[i+j] != "*" or eq[i+j] != "+" or eq[i+j] != "-" or eq[i+j] != "/" or eq[i+j] != "(" or eq[i+j] != ")":
-                        eq[i] = eq[i] + eq[i+j]
-                        eq[i+j] = " "
-                    else:
+                while j < len(eq): # While the variable is less than the length of the list
+
+                    # If we have a operator or parenthesis then we leave the if statement and go again
+                    if eq[i+ j] == " " or eq[i+j] == ")" or eq[i+j] == "(" or eq[i+j] == "+" or eq[i+j] == "-" or eq[i+j] == "/" or eq[i+j] == "*" or eq[i+j] == "^":
                         break
-                    j += 1
-                    print(j)
-            except IndexError: # Index Error Handling is probably the problem when it comes to multi digit integers
-                print("I erro")
+                    else: # Otherwise
+                        eq[i] = eq[i] + eq[i+j] # Since the operands are still strings we can concatenate them as such
+                        eq[i+j] = " " # Then make that index blank
+                    j += 1 # Increment the while loop variable
+            except IndexError: # We'll have an index error as we approach the end of the list
                 break
             except ValueError: # Otherwise that character is not acceptable and we will exit the program
                     print("Invalid input")
                     exit()
-    print(eq)
+
+    for i in range(len(eq)): # Go through the list again and convert all ints in strings to regular ints
+        try:
+           eq[i] = int(eq[i]) # Convert the item at the current index to an int
+        except: # If we try to convert a string
+            pass # Then we skip and continue the loop
+
     # Then we make sure that we check to see if we have any parenthesis
     if eq.count("(") != 0 or eq.count(")") != 0: # If we have more than one parenthesis
 

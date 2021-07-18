@@ -3,7 +3,6 @@
 # Author: Jasper Hawks
 
 import click
-
 from calculate import logic
 from define import *
 from times import *
