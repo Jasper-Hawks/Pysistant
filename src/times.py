@@ -1,5 +1,4 @@
 import time
-import cli.app
 
 def timer(): # Function for the timer
 
