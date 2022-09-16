@@ -1,3 +1,6 @@
+# Please Use [Bash Assistant](https://github.com/Jasper-Hawks/Bash-Assistant) instead
+This is purely archival and [Bash Assistant](https://github.com/Jasper-Hawks/Bash-Assistant) was made to replace Pysistant. [Bash Assistant](https://github.com/Jasper-Hawks/Bash-Assistant) is faster, more efficent, requires less dependencies,and is easier to setup than Pysistant. 
+
 # Pysistant
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8274b7d317e04163ba89a9523515e92c)](https://app.codacy.com/gh/Jasper-Hawks/Pysistant?utm_source=github.com&utm_medium=referral&utm_content=Jasper-Hawks/Pysistant&utm_campaign=Badge_Grade_Settings)
